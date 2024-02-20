@@ -1,6 +1,6 @@
 const imgArray = {
     'крест':'./img/крест.png',
-    'нолик':'./img/ноль.png',
+    'нолик':'./img/нолик.png',
 };
 let stepCount = 0;
 const winStep = [
@@ -84,7 +84,7 @@ window.onclick = function(e){
             fillCheckListcomp (String(compStep));
             fillCells[compStep] = false;
             checkUserLosse(chekListComp)
-            console.log(tableArray[compStep-1].childNodes[0].childNodes[0].setAttribute('src',imgArray['ноль']))
+            console.log(tableArray[compStep-1].childNodes[0].childNodes[0].setAttribute('src',imgArray['нолик']))
             stepCount++;
 
             
