@@ -84,7 +84,7 @@ window.onclick = function(e){
             fillCheckListcomp (String(compStep));
             fillCells[compStep] = false;
             checkUserLosse(chekListComp)
-            console.log(tableArray[compStep-1].childNodes[0].childNodes[0].setAttribute('src',imgArray['нолик']))
+            setTimeout(() => {tableArray[compStep-1].childNodes[0].childNodes[0].setAttribute('src',imgArray['ноль'])}, 400);
             stepCount++;
 
             
