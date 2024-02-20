@@ -1,6 +1,6 @@
 const imgArray = {
     'крест':'./img/крест.png',
-    'ноль':'./img/ноль.png',
+    'нолик':'./img/ноль.png',
 };
 let stepCount = 0;
 const winStep = [
