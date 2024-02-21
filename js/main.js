@@ -3,6 +3,8 @@ const imgArray = {
     'нолик':'./img/нолик.png',
 };
 let stepCount = 0;
+let deltaError = [true, false];
+
 const winStep = [
     [1,2,3], //0
     [1,4,7], //1 
@@ -81,7 +83,7 @@ window.onclick = function(e){
             let compStep = defineStepComp (updateWinStep,userSteps);
 
             compSteps.push(compStep);
-            console.log(compStep);
+            // console.log(compStep);
             // console.log(compStep);
             fillCheckListcomp (String(compStep));
             fillCells[compStep] = false;
@@ -90,7 +92,7 @@ window.onclick = function(e){
             stepCount++;
 
             countStepsTitle.value = String(stepCount);
-            console.log(countStepsTitle)
+            // console.log(countStepsTitle)
             
 
         } else {
@@ -201,6 +203,11 @@ function checkStepWin(pos,checkList){
     return oldPos;
 }
 
+function deltaErrorBrain(){
+    randomFirstStep = deltaError[Math.floor(Math.random() * deltaError.length)];
+    return randomFirstStep;
+}
+
 function defineStepComp (winstepcomp,stepUser){
     // console.log(winstepcomp)
     let indexArr = []
@@ -241,6 +248,16 @@ function defineStepComp (winstepcomp,stepUser){
     updateWinStep = [];
     for(let k of indexArr){
         updateWinStep.push(winstepcomp[k]);        
+    }
+
+    //Ошибка на ум
+    let iq = deltaErrorBrain();
+    console.log(iq)
+
+    if(stepCount == 0 && fillCells[5] == true && iq == true){
+        randomElementForStepComp = 5;
+    } else if (stepCount == 0 && fillCells[1] == true && iq == true){
+        randomElementForStepComp = 1;
     }
 
     return randomElementForStepComp;
