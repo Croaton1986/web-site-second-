@@ -42,6 +42,8 @@ const compSteps = [];
 const tableArray = Array.from(document.querySelectorAll('.game-table .push'))
 const paragWinLose = document.querySelector('.pragraph');
 const blackWindow = document.querySelector('.status');
+const countStepsTitle = document.querySelector('input');
+
 const fillCells = {
     1: true,
     2: true,
@@ -87,6 +89,8 @@ window.onclick = function(e){
             setTimeout(() => {tableArray[compStep-1].childNodes[0].childNodes[0].setAttribute('src',imgArray['нолик'])}, 400);
             stepCount++;
 
+            countStepsTitle.value = String(stepCount);
+            console.log(countStepsTitle)
             
 
         } else {
@@ -181,6 +185,22 @@ function newIndexList (){
     return arr;
 }
 
+function checkStepWin(pos,checkList){
+    oldPos = pos;
+    for(let i  of checkList){
+        let keysCheckList = Object.keys(i)
+        if((i[keysCheckList[0]] == true && i[keysCheckList[1]] == true) || (i[keysCheckList[0]] == true && i[keysCheckList[2]] == true) || (i[keysCheckList[2]] == true && i[keysCheckList[1]] == true)){
+            for(let j in i){
+                if(i[j] == false && fillCells[j] == true){
+                    let newPos = j;
+                    return newPos;
+                }
+            }
+        }
+    }
+    return oldPos;
+}
+
 function defineStepComp (winstepcomp,stepUser){
     // console.log(winstepcomp)
     let indexArr = []
@@ -212,6 +232,11 @@ function defineStepComp (winstepcomp,stepUser){
     while (checkCompStep(randomElementForStepComp) == false){
         randomElementForStepComp = randomElementFromWin[Math.floor(Math.random() * randomElementFromWin.length)]
     }
+
+    randomElementForStepComp = checkStepWin(randomElementForStepComp, chekListUser);
+    randomElementForStepComp = checkStepWin(randomElementForStepComp, chekListComp);
+    /* */
+
 
     updateWinStep = [];
     for(let k of indexArr){
