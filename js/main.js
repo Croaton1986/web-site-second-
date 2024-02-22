@@ -249,15 +249,7 @@ function defineStepComp (winstepcomp,stepUser){
         randomElementForStepComp = randomElementFromWin[Math.floor(Math.random() * randomElementFromWin.length)]
     }
 
-    randomElementForStepComp = checkStepWin(randomElementForStepComp, chekListUser);
-    randomElementForStepComp = checkStepWin(randomElementForStepComp, chekListComp);
-    /* */
-
-
-    updateWinStep = [];
-    for(let k of indexArr){
-        updateWinStep.push(winstepcomp[k]);        
-    }
+    
 
     //Ошибка на ум
     let iq = deltaErrorBrain();// Добавил до внедрения уровней ложности
@@ -284,16 +276,25 @@ function defineStepComp (winstepcomp,stepUser){
                 randomElementForStepComp = 7;
             } else {
                 let cornerArray = [1,3,7,9];
-                randomElementForStepComp.cornerArray[Math.floor(Math.random() * cornerArray.length)]
+                randomElementForStepComp = cornerArray[Math.floor(Math.random() * cornerArray.length)]
                 while (checkCompStep(randomElementForStepComp) == false){
-                    randomElementForStepComp.cornerArray[Math.floor(Math.random() * cornerArray.length)]
+                    randomElementForStepComp = cornerArray[Math.floor(Math.random() * cornerArray.length)]
                 }
                 
             }
         }
     }
     
+    randomElementForStepComp = checkStepWin(randomElementForStepComp, chekListUser);
+    randomElementForStepComp = checkStepWin(randomElementForStepComp, chekListComp);
+    /* */
 
+
+    updateWinStep = [];
+    for(let k of indexArr){
+        updateWinStep.push(winstepcomp[k]);        
+    }
+    
     return randomElementForStepComp;
 }
 
