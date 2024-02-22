@@ -5,7 +5,7 @@ const imgArray = {
 
 /* Узнаем уровень сложности*/
 const polsun = document.querySelector('.polsun');
-let level = 50;
+let level = 0;
 polsun.addEventListener('change', (e) =>{
     console.log(e.target.value)
     level = e.target.value;
@@ -212,9 +212,20 @@ function checkStepWin(pos,checkList){
     return oldPos;
 }
 
+
+
+//Рандомный выбор для уменьшения ума компа (убрал, так как добавил уровни сложности)
 function deltaErrorBrain(){
     randomFirstStep = deltaError[Math.floor(Math.random() * deltaError.length)];
     return randomFirstStep;
+}
+
+//Содержаться ли элементы одного массива в другом
+function contains(where, what){
+    for(let i=0; i<what.length; i++){
+        if(where.indexOf(what[i]) == -1) return false;
+    }
+    return true;
 }
 
 function defineStepComp (winstepcomp,stepUser){
@@ -249,11 +260,14 @@ function defineStepComp (winstepcomp,stepUser){
         randomElementForStepComp = randomElementFromWin[Math.floor(Math.random() * randomElementFromWin.length)]
     }
 
-    
-
+    //Неугловые клетки
+    let notCorneyArray = ['2','4','5','6','8']
+    //Угловые клетки
+    let cornerArray = ['1','3','7','9'];
     //Ошибка на ум
     let iq = deltaErrorBrain();// Добавил до внедрения уровней ложности
-    console.log(iq)//
+
+    console.log(userSteps)//
     if (level == '50') {
         if(stepCount == 0 && fillCells[5] == true){// && iq == true){
             randomElementForStepComp = 5;
@@ -274,8 +288,13 @@ function defineStepComp (winstepcomp,stepUser){
                 randomElementForStepComp = 9;
             } else if(fillCells[8] == false && fillCells[4] == false && (userSteps.includes('8') && userSteps.includes('4'))){
                 randomElementForStepComp = 7;
-            } else {
-                let cornerArray = [1,3,7,9];
+            } else if (contains(cornerArray, userSteps)) {
+                console.log(contains(cornerArray, userSteps))
+                randomElementForStepComp = notCorneyArray[Math.floor(Math.random() * notCorneyArray.length)]
+                while (checkCompStep(randomElementForStepComp) == false){
+                    randomElementForStepComp = notCorneyArray[Math.floor(Math.random() * notCorneyArray.length)]
+                }
+            } else{
                 randomElementForStepComp = cornerArray[Math.floor(Math.random() * cornerArray.length)]
                 while (checkCompStep(randomElementForStepComp) == false){
                     randomElementForStepComp = cornerArray[Math.floor(Math.random() * cornerArray.length)]
@@ -294,7 +313,7 @@ function defineStepComp (winstepcomp,stepUser){
     for(let k of indexArr){
         updateWinStep.push(winstepcomp[k]);        
     }
-    
+
     return randomElementForStepComp;
 }
 
