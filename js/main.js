@@ -267,7 +267,7 @@ function defineStepComp (winstepcomp,stepUser){
     //Ошибка на ум
     let iq = deltaErrorBrain();// Добавил до внедрения уровней ложности
 
-    console.log(userSteps)//
+    //console.log(userSteps)//
     if (level == '50') {
         if(stepCount == 0 && fillCells[5] == true){// && iq == true){
             randomElementForStepComp = 5;
@@ -289,7 +289,7 @@ function defineStepComp (winstepcomp,stepUser){
             } else if(fillCells[8] == false && fillCells[4] == false && (userSteps.includes('8') && userSteps.includes('4'))){
                 randomElementForStepComp = 7;
             } else if (contains(cornerArray, userSteps)) {
-                console.log(contains(cornerArray, userSteps))
+                //console.log(contains(cornerArray, userSteps))
                 randomElementForStepComp = notCorneyArray[Math.floor(Math.random() * notCorneyArray.length)]
                 while (checkCompStep(randomElementForStepComp) == false){
                     randomElementForStepComp = notCorneyArray[Math.floor(Math.random() * notCorneyArray.length)]
