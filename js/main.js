@@ -5,7 +5,7 @@ const imgArray = {
 
 /* Узнаем уровень сложности*/
 const polsun = document.querySelector('.polsun');
-let level = 0;
+let level = 50;
 polsun.addEventListener('change', (e) =>{
     console.log(e.target.value)
     level = e.target.value;
