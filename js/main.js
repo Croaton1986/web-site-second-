@@ -2,6 +2,15 @@ const imgArray = {
     'крест':'./img/крест.png',
     'нолик':'./img/нолик.png',
 };
+
+/* Узнаем уровень сложности*/
+const polsun = document.querySelector('.polsun');
+let level = 50;
+polsun.addEventListener('change', (e) =>{
+    console.log(e.target.value)
+    level = e.target.value;
+})
+/*Конец уровня сложности */
 let stepCount = 0;
 let deltaError = [true, false];
 
@@ -251,24 +260,41 @@ function defineStepComp (winstepcomp,stepUser){
     }
 
     //Ошибка на ум
-    let iq = deltaErrorBrain();
-    console.log(iq)
-
-    if(stepCount == 0 && fillCells[5] == true && iq == true){
-        randomElementForStepComp = 5;
-    } else if (stepCount == 0 && fillCells[1] == true && iq == true){
-        randomElementForStepComp = 1;
-    } else if (stepCount == 1){
-        if(fillCells[2] == false && fillCells[4] == false && (userSteps.includes('2') && userSteps.includes('4'))){
+    let iq = deltaErrorBrain();// Добавил до внедрения уровней ложности
+    console.log(iq)//
+    if (level == '50') {
+        if(stepCount == 0 && fillCells[5] == true){// && iq == true){
+            randomElementForStepComp = 5;
+        } else if (stepCount == 0 && fillCells[1] == true){// && iq == true){
             randomElementForStepComp = 1;
-        } else if(fillCells[2] == false && fillCells[6] == false && (userSteps.includes('2') && userSteps.includes('6'))){
-            randomElementForStepComp = 3;
-        } else if(fillCells[6] == false && fillCells[8] == false && (userSteps.includes('6') && userSteps.includes('8'))){
-            randomElementForStepComp = 9;
-        } else if(fillCells[8] == false && fillCells[4] == false && (userSteps.includes('8') && userSteps.includes('4'))){
-            randomElementForStepComp = 7;
+        }
+    } else if (level == '0'){
+        if(stepCount == 0 && fillCells[5] == true){// && iq == true){
+            randomElementForStepComp = 5;
+        } else if (stepCount == 0 && fillCells[1] == true){// && iq == true){
+            randomElementForStepComp = 1;
+        } else if (stepCount == 1){
+            if(fillCells[2] == false && fillCells[4] == false && (userSteps.includes('2') && userSteps.includes('4'))){
+                randomElementForStepComp = 1;
+            } else if(fillCells[2] == false && fillCells[6] == false && (userSteps.includes('2') && userSteps.includes('6'))){
+                randomElementForStepComp = 3;
+            } else if(fillCells[6] == false && fillCells[8] == false && (userSteps.includes('6') && userSteps.includes('8'))){
+                randomElementForStepComp = 9;
+            } else if(fillCells[8] == false && fillCells[4] == false && (userSteps.includes('8') && userSteps.includes('4'))){
+                randomElementForStepComp = 7;
+            }
         }
     }
+    
 
     return randomElementForStepComp;
 }
+
+
+
+
+/*---------------*/
+
+
+
+// console.log(polsun.list)
