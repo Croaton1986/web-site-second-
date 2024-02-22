@@ -258,6 +258,16 @@ function defineStepComp (winstepcomp,stepUser){
         randomElementForStepComp = 5;
     } else if (stepCount == 0 && fillCells[1] == true && iq == true){
         randomElementForStepComp = 1;
+    } else if (stepCount == 1){
+        if(fillCells[2] == false && fillCells[4] == false && (userSteps.includes('2') && userSteps.includes('4'))){
+            randomElementForStepComp = 1;
+        } else if(fillCells[2] == false && fillCells[6] == false && (userSteps.includes('2') && userSteps.includes('6'))){
+            randomElementForStepComp = 3;
+        } else if(fillCells[6] == false && fillCells[8] == false && (userSteps.includes('6') && userSteps.includes('8'))){
+            randomElementForStepComp = 9;
+        } else if(fillCells[8] == false && fillCells[4] == false && (userSteps.includes('8') && userSteps.includes('4'))){
+            randomElementForStepComp = 7;
+        }
     }
 
     return randomElementForStepComp;
