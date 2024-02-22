@@ -282,6 +282,13 @@ function defineStepComp (winstepcomp,stepUser){
                 randomElementForStepComp = 9;
             } else if(fillCells[8] == false && fillCells[4] == false && (userSteps.includes('8') && userSteps.includes('4'))){
                 randomElementForStepComp = 7;
+            } else {
+                let cornerArray = [1,3,7,9];
+                randomElementForStepComp.cornerArray[Math.floor(Math.random() * cornerArray.length)]
+                while (checkCompStep(randomElementForStepComp) == false){
+                    randomElementForStepComp.cornerArray[Math.floor(Math.random() * cornerArray.length)]
+                }
+                
             }
         }
     }
