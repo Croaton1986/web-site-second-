@@ -13,9 +13,9 @@
             <div class="">
                 <p class="pragraph">Ты победил</p>
             </div>
-            <label for=""> 
-                <p>Steps:</p> 
-                <input type="text" value="0">
+            <label class="steps-tex" for=""> 
+                <p class="steps-content">Steps:</p> 
+                <input class="steps" type="text" value="0">
             </label>
         </div>
         <div class="game-container">            
@@ -29,6 +29,19 @@
                 <button class="push 7"><div class="pic"><img src="" alt="" class="pic-game"></div></button>
                 <button class="push 8"><div class="pic"><img src="" alt="" class="pic-game"></div></button>
                 <button class="push 9"><div class="pic"><img src="" alt="" class="pic-game"></div></button>                
+            </div>
+        </div>
+        <div class="slider">
+            <label for="fader"></label><input type="range" min="0" max="100" value="50" id="fader" step="50" list="volsettings">
+            <datalist id="volsettings">
+               <option>0</option>
+               <option>50</option>
+               <option>100</option>
+            </datalist>
+            <div class="pols-container">
+                <p class="pols pol1">Сложный</p>
+                <p class="pols pol2">Средний</p>
+                <p class="pols pol3">Легкий</p>
             </div>
         </div>
     </div>
